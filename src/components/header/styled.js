@@ -13,4 +13,8 @@ export const Nav = styled.nav`
       margin: 0 15px 0 0;
       font-weight: bold;
    }
+   div {
+      margin-left: auto;
+      display: flex;
+   }
 `;

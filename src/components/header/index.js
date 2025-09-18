@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-   FaHome,
-   FaSignInAlt,
-   FaUserAlt,
-   FaCircle,
-   FaPowerOff,
-} from 'react-icons/fa';
+import { FaHome, FaCircle, FaPowerOff } from 'react-icons/fa';
 import { Link, useHistory } from 'react-router-dom'; // isso é necessário para usar o Link do react-router-dom
 import { useSelector, useDispatch } from 'react-redux';
 import { Nav } from './styled';
@@ -28,21 +22,23 @@ export default function Header() {
          <Link to="/">
             <FaHome size={24} />
          </Link>
-         <Link to="/register">
-            <FaUserAlt size={24} />
-         </Link>
 
-         {isLoggedIn ? (
-            <Link onClick={handleLogout} to="/logout">
-               <FaPowerOff size={24} />
+         <div>
+            {isLoggedIn ? (
+               <Link onClick={handleLogout} to="/logout">
+                  <FaPowerOff size={24} />
+               </Link>
+            ) : (
+               <Link to="/login">
+                  <p>Login</p>
+               </Link>
+            )}
+            <Link to="/register">
+               <p>Register</p>
             </Link>
-         ) : (
-            <Link to="/login">
-               <FaSignInAlt size={24} />
-            </Link>
-         )}
 
-         {isLoggedIn && <FaCircle size={24} color="#66ff33" />}
+            {isLoggedIn && <FaCircle size={24} color="#66ff33" />}
+         </div>
       </Nav>
    );
 }

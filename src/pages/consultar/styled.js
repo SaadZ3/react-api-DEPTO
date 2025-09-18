@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const HomeContainer = styled.div`
+export const ConsultarContainer = styled.div`
    p,
    h3,
    li {
