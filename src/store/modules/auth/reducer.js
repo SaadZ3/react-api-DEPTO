@@ -17,7 +17,6 @@ export default function reducer(state = initialState, action) {
          newState.isLoggedIn = true; // usuário está logado
          newState.token = action.payload.token; // armazena o token
          newState.user = action.payload.user; // armazena os dados do usuário
-         newState.role = action.payload.role; // armazena os dados do usuário
          newState.isLoading = false; // indica que o login foi concluído
          return newState;
       }
@@ -36,7 +35,6 @@ export default function reducer(state = initialState, action) {
          const newState = { ...state };
          newState.user.nome = action.payload.nome;
          newState.user.email = action.payload.email;
-         newState.user.role = action.payload.role;
          newState.isLoading = false;
          return newState; // reseta o estado para o inicial em caso de falha no login
       }

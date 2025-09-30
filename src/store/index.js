@@ -1,5 +1,5 @@
 // redux é uma biblioteca para gerenciar o estado da aplicação, aqui que é feita a store e o controle dos estados
-// o redux é utilizado paara se fazer alteraçoes em um estado global da aplicação (exemplo: logado ou nao, carrinho de compras, etc)
+// o redux é utilizado para se fazer alteraçoes em um estado global da aplicação (exemplo: logado ou nao, carrinho de compras, etc)
 import { persistStore } from 'redux-persist';
 import { legacy_createStore as createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';

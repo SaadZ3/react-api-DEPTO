@@ -24,7 +24,7 @@ export default function Alunos() {
    useEffect(() => {
       async function getData() {
          setIsLoading(true);
-         const response = await axios.get('/alunos'); // pegando os alunos do banco
+         const response = await axios.get('/departamentos'); // pegando os alunos do banco
          setAlunos(response.data);
          setIsLoading(false);
       }
