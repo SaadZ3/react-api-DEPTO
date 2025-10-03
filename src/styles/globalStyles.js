@@ -24,7 +24,7 @@ export default createGlobalStyle`
         cursor: pointer; // deixa o cursor em forma de mãozinha quando passa por cima do botão
         background: ${colors.primaryColor};
         border: none;
-        color: #fff;
+        color: #ffffffff;
         padding: 10px 15px;
         border-radius: 4px;
         font-size: 1em;
@@ -43,7 +43,7 @@ export default createGlobalStyle`
 
     body .Toastify .Toastify__toast-container .Toastify__toast--success {
         background: ${colors.successColor};
-        color: #fff;
+        color: #ffffffff;
     }
     body .Toastify .Toastify__toast-container .Toastify__toast--error {
         background: ${colors.errorColor};
@@ -53,8 +53,8 @@ export default createGlobalStyle`
 `;
 
 export const Container = styled.section`
-   max-width: 480px;
-   background: #fff;
+   max-width: 780px;
+   background: #f8feffff;
    margin: 30px auto;
    padding: 30px;
    border-radius: 4px;
