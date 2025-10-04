@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { get } from 'lodash';
 import { Container } from '../../styles/globalStyles';
-import ViewInfos from './filtrar';
+import ViewInfos from './InfoDeptos';
 import { ConsultarContainer } from './styled';
 import axios from '../../services/axios'; // Importe o axios aqui
 import Loading from '../../components/loading/index'; // Importe o Loading aqui
@@ -33,6 +33,7 @@ export default function Home() {
    const [filteredDeptos, setFilteredDeptos] = useState([]); // Departamentos que correspondem ao filtro
    const [activeIndex, setActiveIndex] = useState(-1); // Índice do item destacado com o teclado
    const [valorInput, setValorInput] = useState('');
+   const [isSelected, setIsSelected] = useState(false); // Flag para controlar se algo foi selecionado
 
    const [selectedDept, setSelectedDept] = useState(null);
 
@@ -63,26 +64,33 @@ export default function Home() {
 
    // Filtra a lista sempre que o termo de busca (searchTerm) mudar
    useEffect(() => {
+      // Se já foi selecionado, não filtra
+      if (isSelected) return;
+
       if (valorInput.trim() === '') {
          setFilteredDeptos([]);
          return;
       }
+
       const filtered = allDeptos.filter((dept) =>
          dept.titulo.toLowerCase().includes(valorInput.toLowerCase()),
       );
+
       setFilteredDeptos(filtered);
       setActiveIndex(-1);
-   }, [valorInput, allDeptos]);
+   }, [valorInput, allDeptos, isSelected]);
 
    // Handler para o clique no item da lista (lógica de Filtrar)
    const handleItemClick = (dept) => {
-      setValorInput(dept.titulo); // Preenche o input
-      setFilteredDeptos([]); // Esconde a lista
       setSelectedDept(dept);
+      setValorInput(dept.titulo); // Preenche o input
+      setFilteredDeptos([]); // Esconde a lista IMEDIATAMENTE
+      setActiveIndex(-1); // Reset active index
+      setIsSelected(true); // Marca como selecionado para bloquear o filtro
       toast.success(`Selecionado: ${dept.titulo}`);
    };
 
-   // 4. Handler para navegação com teclado (movido de Filtrar)
+   // Handler para navegação com teclado (movido de Filtrar)
    const handleKeyDown = (e) => {
       if (filteredDeptos.length === 0) return;
 
@@ -98,6 +106,10 @@ export default function Home() {
       } else if (e.key === 'Enter' && activeIndex > -1) {
          e.preventDefault();
          handleItemClick(filteredDeptos[activeIndex]);
+      } else if (e.key === 'Escape') {
+         e.preventDefault();
+         setFilteredDeptos([]); // Clear list on Escape
+         setActiveIndex(-1);
       }
    };
 
@@ -113,7 +125,10 @@ export default function Home() {
                autoFocus="true"
                placeholder="Digite o nome do departamento"
                value={valorInput}
-               onChange={(e) => setValorInput(e.target.value)}
+               onChange={(e) => {
+                  setValorInput(e.target.value);
+                  setIsSelected(false); // Reseta a flag quando o usuário começa a digitar
+               }}
                onKeyDown={handleKeyDown} // Adicionado o evento de teclado aqui
             />
             <button type="button">Consultar</button>
@@ -128,7 +143,7 @@ export default function Home() {
                         className={index === activeIndex ? 'highlighted' : ''}
                         onClick={() => handleItemClick(dept)}
                         // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-                        onMouseOver={() => setActiveIndex(index)}
+                        // onMouseOver={() => setActiveIndex(index)}
                      >
                         <HighlightedText
                            text={dept.titulo}

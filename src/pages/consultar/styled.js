@@ -135,4 +135,8 @@ export const InfosContainer = styled.div`
       width: 20px;
       text-align: center;
    }
+   .linha {
+      background: ${colors.border};
+      height: 1px;
+   }
 `;
