@@ -1,50 +1,37 @@
-import React, { useState } from 'react';
-
-// import { useHistory } from 'react-router-dom'; // isso é necessário para usar o Link do react-router-dom
-// import { useSelector, useDispatch } from 'react-redux';
-import { Switch } from './styled';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Switch, Btn } from './styled';
 import { Container } from '../../styles/globalStyles';
 
-// eslint-disable-next-line import/no-cycle
-import Consultar from '../consultar/index';
-import Gerenciar from '../gerenciar/index';
-
-// import * as actions from '../../store/modules/auth/actions';
-
 export default function SwitchScreen() {
-   const [activeScreen, setActiveScreen] = useState('');
-
-   const changeScreen = (value) => {
-      // Se clicar na mesma screen ativa, remove ela
-      if (activeScreen === value) {
-         setActiveScreen('');
-      } else {
-         setActiveScreen(value);
-      }
-   };
+   const location = useLocation();
 
    return (
       <Container>
          <Switch>
             <div className="navegation">
-               <button
-                  type="button"
-                  className={`btnConsultar ${activeScreen === 'consultar' ? 'active' : ''}`}
-                  onClick={() => changeScreen('consultar')}
-               >
-                  Consultar
-               </button>
-               <button
-                  type="button"
-                  className={`btnGerenciar ${activeScreen === 'gerenciar' ? 'active' : ''}`}
-                  onClick={() => changeScreen('gerenciar')}
-               >
-                  Gerenciar
-               </button>
+               <Btn>
+                  <Link
+                     to="/consultar"
+                     className={
+                        location.pathname === '/consultar' ? 'active' : ''
+                     }
+                  >
+                     Consultar
+                  </Link>
+               </Btn>
+               <Btn>
+                  <Link
+                     to="/gerenciar"
+                     className={
+                        location.pathname === '/gerenciar' ? 'active' : ''
+                     }
+                  >
+                     Gerenciar
+                  </Link>
+               </Btn>
             </div>
          </Switch>
-         {activeScreen === 'consultar' && <Consultar />}
-         {activeScreen === 'gerenciar' && <Gerenciar />}
       </Container>
    );
 }

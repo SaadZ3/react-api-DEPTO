@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import * as colors from '../../config/colors';
 
 export const GerenciarContainer = styled.div`
+   margin: 0 auto 30px;
    padding: 30px;
    background: #f8feffff;
    border: 1px solid ${colors.border};

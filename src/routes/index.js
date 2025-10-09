@@ -10,7 +10,10 @@ import Register from '../pages/register';
 import Login from '../pages/login';
 import Page404 from '../pages/page404';
 // import Home from '../pages/consultar';
+
 import SwitchScreen from '../pages/switchScreen';
+import Consultar from '../pages/consultar';
+import Gerenciar from '../pages/gerenciar';
 
 export default function Routes() {
    return (
@@ -31,6 +34,11 @@ export default function Routes() {
          {/* eslint-disable-next-line prettier/prettier */}
          <MyRoute exact path="/register/" component={Register} isClosed={false} />
          <MyRoute exact path="/login/" component={Login} isClosed={false} />
+
+         {/* eslint-disable-next-line prettier/prettier */}
+         <MyRoute exact path="/consultar" component={Consultar} isClosed={false} />
+         {/* eslint-disable-next-line prettier/prettier */}
+         <MyRoute exact path="/gerenciar" component={Gerenciar} isClosed />
 
          <MyRoute path="*" component={Page404} />
       </Switch>

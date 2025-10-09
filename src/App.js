@@ -8,6 +8,7 @@ import store, { persistor } from './store'; // importando a store que foi criada
 import GlobalStyles from './styles/globalStyles'; // todo componente do react deve ser importado com letra maiúscula
 import history from './services/history'; // importando o history que foi criado para gerenciar o histórico de navegação
 import Header from './components/header';
+import ChangeScreen from './pages/switchScreen';
 import Routes from './routes';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
          <PersistGate persistor={persistor}>
             <Router history={history}>
                <Header />
+               <ChangeScreen />
                <Routes />
                <GlobalStyles />
                <ToastContainer autoClose={3000} classname="toast-container" />

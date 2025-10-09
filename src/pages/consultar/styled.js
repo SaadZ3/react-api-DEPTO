@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import * as colors from '../../config/colors';
 
 export const ConsultarContainer = styled.div`
+   margin: 0;
    padding: 30px;
    background: #f8feffff;
    border: 1px solid ${colors.border};
