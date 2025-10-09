@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import * as colors from '../../config/colors';
 
 export const ConsultarContainer = styled.div`
+   padding: 30px;
+   background: #f8feffff;
+   border: 1px solid ${colors.border};
+   border-top: none;
+   border-radius: 0 0 ${colors.radiusXl} ${colors.radiusXl};
    p,
    h3,
    li {

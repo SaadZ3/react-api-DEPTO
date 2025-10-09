@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 // import { useHistory } from 'react-router-dom'; // isso é necessário para usar o Link do react-router-dom
 // import { useSelector, useDispatch } from 'react-redux';
 import { Switch } from './styled';
+import { Container } from '../../styles/globalStyles';
 
 // eslint-disable-next-line import/no-cycle
 import Consultar from '../consultar/index';
@@ -23,7 +24,7 @@ export default function SwitchScreen() {
    };
 
    return (
-      <div>
+      <Container>
          <Switch>
             <div className="navegation">
                <button
@@ -44,6 +45,6 @@ export default function SwitchScreen() {
          </Switch>
          {activeScreen === 'consultar' && <Consultar />}
          {activeScreen === 'gerenciar' && <Gerenciar />}
-      </div>
+      </Container>
    );
 }

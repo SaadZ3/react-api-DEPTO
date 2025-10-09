@@ -56,7 +56,7 @@ export const Container = styled.section`
    max-width: 780px;
    background: #f8feffff;
    margin: 30px auto;
-   padding: 30px;
-   border-radius: 4px;
+   padding: 0;
+   border-radius: ${colors.radiusXl};
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 `;
