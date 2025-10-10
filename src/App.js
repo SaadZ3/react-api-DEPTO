@@ -17,7 +17,6 @@ function App() {
          <PersistGate persistor={persistor}>
             <Router history={history}>
                <Header />
-               <ChangeScreen />
                <Routes />
                <GlobalStyles />
                <ToastContainer autoClose={3000} classname="toast-container" />
@@ -28,3 +27,4 @@ function App() {
 }
 
 export default App;
+
