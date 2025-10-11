@@ -4,7 +4,7 @@ import { Switch } from 'react-router-dom';
 import MyRoute from './myRoute';
 
 import Aluno from '../pages/departamento';
-import Alunos from '../pages/alunos';
+import Alunos from '../pages/departamentos';
 import Fotos from '../pages/fotos';
 import Register from '../pages/register';
 import Login from '../pages/login';
