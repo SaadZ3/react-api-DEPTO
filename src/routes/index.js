@@ -11,7 +11,6 @@ import Login from '../pages/login';
 import Page404 from '../pages/page404';
 // import Home from '../pages/consultar';
 
-import SwitchScreen from '../pages/switchScreen';
 import Consultar from '../pages/consultar';
 import Gerenciar from '../pages/gerenciar';
 
@@ -19,12 +18,7 @@ export default function Routes() {
    return (
       <Switch>
          <MyRoute exact path="/" component={Alunos} isClosed={false} />
-         <MyRoute
-            exact
-            path="/home"
-            component={SwitchScreen}
-            isClosed={false}
-         />
+         <MyRoute exact path="/home" component={Consultar} isClosed={false} />
 
          {/* as proximas 3 rotas são de ediçãa de aluno */}
          <MyRoute exact path="/aluno/:id/edit" component={Aluno} isClosed />
