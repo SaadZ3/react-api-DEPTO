@@ -3,15 +3,15 @@ import { useParams, Link } from 'react-router-dom';
 // import { get } from 'lodash';
 // import { FaEdit, FaWindowClose, FaExclamation } from 'react-icons/fa';
 import { FaEdit } from 'react-icons/fa';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import { Container } from '../../styles/globalStyles';
-import { AlunoContainer } from './styled';
+import { DeptosContainer2 } from './styled';
 import axios from '../../services/axios';
 
 import Loading from '../../components/loading';
 
-export default function Alunos() {
+export default function ListarDeptos() {
    const { andar } = useParams(); // <-- captura o parâmetro da URL
    const [departamentos, setDepartamentos] = useState([]);
    const [isLoading, setIsLoading] = useState(false);
@@ -20,8 +20,13 @@ export default function Alunos() {
    useEffect(() => {
       async function getData() {
          setIsLoading(true);
-         const response = await axios.get(`/departamentos?andar=${andar}`); // pegando os alunos do banco
-         setDepartamentos(response.data);
+         try {
+            // Faz a requisição para a API com o filtro de andar
+            const response = await axios.get(`/departamentos?andar=${andar}`);
+            setDepartamentos(response.data);
+         } catch (error) {
+            toast.error('Erro ao carregar departamentos');
+         }
          setIsLoading(false);
       }
       getData();
@@ -61,10 +66,15 @@ export default function Alunos() {
    return (
       <Container>
          <Loading isLoading={isLoading} />
-
+         <div>
+            <h1>GERENCIAR</h1>
+            <Link to="/aluno/">
+               <button type="button">Novo Departamento</button>
+            </Link>
+         </div>
          <h1>Departamentos do Andar: {andar}</h1>
 
-         <AlunoContainer>
+         <DeptosContainer2>
             {departamentos.map((depto) => (
                <div key={String(depto.id)}>
                   <span>{depto.titulo}</span>
@@ -89,7 +99,7 @@ export default function Alunos() {
                   /> */}
                </div>
             ))}
-         </AlunoContainer>
+         </DeptosContainer2>
       </Container>
    );
 }

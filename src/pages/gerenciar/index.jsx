@@ -5,7 +5,21 @@ import SwitchScreen from '../switchScreen/index';
 import { GerenciarContainer } from './styled';
 
 export default function Gerenciar() {
-   const andares = ['Térreo', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+   const andares = [
+      '2º Sub-solo',
+      '1º Sub-solo',
+      'Térreo',
+      '1º Andar',
+      '2º Andar',
+      '3º Andar',
+      '4º Andar',
+      '5º Andar',
+      '6º Andar',
+      '7º Andar',
+      '8º Andar',
+      '9º Andar',
+      '10º Andar',
+   ];
    return (
       <Container>
          <SwitchScreen />
@@ -18,8 +32,8 @@ export default function Gerenciar() {
             </div>
             <div className="andares">
                {andares.map((andar) => (
-                  <Link key={String(andar)} to={`/departamentos/${andar}`}>
-                     <div>{`Andar ${andar}`}</div>
+                  <Link key={andar} to={`/departamentos/${andar}`}>
+                     <div>{andar}</div>
                   </Link>
                ))}
             </div>

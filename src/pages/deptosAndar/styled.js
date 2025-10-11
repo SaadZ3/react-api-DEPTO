@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const AlunoContainer = styled.div`
+export const DeptosContainer2 = styled.div`
    margin-top: 20px;
    div {
       display: flex;
