@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { get } from 'lodash';
-import { isEmail, isInt, isFloat } from 'validator';
+import { isEmail } from 'validator';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
-import { FaUserCircle, FaEdit } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+// import { FaUserCircle, FaEdit } from 'react-icons/fa';
+// import { Link } from 'react-router-dom';
 
 import axios from '../../services/axios';
 import { Container } from '../../styles/globalStyles';
-import { Form, ProfilePicture, Title } from './styled';
+import { Form, Title } from './styled';
 import Loading from '../../components/loading/index';
 import * as actions from '../../store/modules/auth/actions';
 
-export default function Aluno({ match, history }) {
+export default function Departamento({ match, history }) {
    const dispatch = useDispatch();
 
    const id = get(match, 'params.id', '');
-   const [nome, setNome] = useState('');
-   const [sobrenome, setSobrenome] = useState('');
+   const [titulo, setTitulo] = useState('');
+   const [textoPrinc, setTextoPrinc] = useState('');
+   const [ramal, setRamal] = useState('');
    const [email, setEmail] = useState('');
-   const [idade, setIdade] = useState('');
-   const [peso, setPeso] = useState('');
-   const [altura, setAltura] = useState('');
-   const [foto, setFoto] = useState('');
+   const [funcionarios, setFuncionarios] = useState('');
+   const [andar, setAndar] = useState('');
    const [isLoading, setIsLoading] = useState(false);
 
    // useEffect é para preencher os dados antoriores na tela, antes do usuario edita-los
@@ -34,18 +33,15 @@ export default function Aluno({ match, history }) {
       async function getData() {
          try {
             setIsLoading(true);
-            const { data } = await axios.get(`/alunos/${id}`);
-            const Foto = get(data, 'Fotos[0].url', '');
+            const { data } = await axios.get(`/departamentos/${id}`);
 
             // preenchendo os campos
-            setFoto(Foto);
-            setNome(data.nome);
-            setSobrenome(data.sobrenome);
+            setTitulo(data.titulo);
+            setTextoPrinc(data.texto_principal);
             setEmail(data.email);
-            setIdade(data.idade);
-            setPeso(data.peso);
-            setAltura(data.altura);
-
+            setRamal(data.ramal);
+            setFuncionarios(data.funcionarios);
+            setAndar(data.andar);
             setIsLoading(false);
          } catch (err) {
             setIsLoading(false);
@@ -63,34 +59,28 @@ export default function Aluno({ match, history }) {
       e.preventDefault();
       let formErrors = false;
 
-      if (nome.length < 3 || nome.length > 255) {
-         toast.error('Nome precisa ter entre 3 e 255 caracteres');
+      if (titulo.length < 2 || titulo.length > 50) {
+         toast.error('Titulo precisa ter entre 3 e 50 caracteres');
          formErrors = true;
       }
-
-      if (sobrenome.length < 3 || sobrenome.length > 255) {
-         toast.error('Sobrenome precisa ter entre 3 e 255 caracteres');
+      if (textoPrinc.length < 3 || textoPrinc.length > 255) {
+         toast.error('erro ta no front');
          formErrors = true;
       }
-
+      if (funcionarios.length < 3 || funcionarios.length > 655) {
+         toast.error('funcionarios precisa ter entre 3 e 655 caracteres');
+         formErrors = true;
+      }
+      if (ramal.length < 3 || ramal.length > 255) {
+         toast.error('Os ramais precisam ter entre 3 e 255 caracteres.');
+         formErrors = true;
+      }
+      if (andar.length < 1 || andar.length > 255) {
+         toast.error('O andar precisa ter entre 1 e 255 caracteres.');
+         formErrors = true;
+      }
       if (!isEmail(email)) {
          toast.error('E-mail inválido');
-         formErrors = true;
-      }
-
-      // como o validator so valida string, transforma idade em str
-      if (!isInt(String(idade))) {
-         toast.error('Idade inválida');
-         formErrors = true;
-      }
-
-      if (!isFloat(String(peso))) {
-         toast.error('Peso inválido');
-         formErrors = true;
-      }
-
-      if (!isFloat(String(altura))) {
-         toast.error('Altura inválida');
          formErrors = true;
       }
 
@@ -102,26 +92,26 @@ export default function Aluno({ match, history }) {
 
          // se tiver id, edita os dados, se não, cria os dados
          if (id) {
-            await axios.put(`/alunos/${id}`, {
-               nome,
-               sobrenome,
+            await axios.put(`/departamentos/${id}`, {
+               titulo,
+               texto_principal: textoPrinc,
                email,
-               idade,
-               peso,
-               altura,
+               ramal,
+               funcionarios,
+               andar,
             });
-            toast.success('Aluno(a) editado(a) com sucesso!');
+            toast.success('Departamento editado com sucesso!');
          } else {
-            const { data } = await axios.post(`/alunos/`, {
-               nome,
-               sobrenome,
+            const { data } = await axios.post(`/departamentos/`, {
+               titulo,
+               texto_principal: textoPrinc,
                email,
-               idade,
-               peso,
-               altura,
+               ramal,
+               funcionarios,
+               andar,
             });
-            toast.success('Aluno(a) criado(a) com sucesso!');
-            history.push(`/aluno/${data.id}/edit`);
+            toast.success('Departamento criado com sucesso!');
+            history.push(`/departamento/${data.id}/edit`);
          }
 
          setIsLoading(false);
@@ -146,10 +136,10 @@ export default function Aluno({ match, history }) {
       <Container>
          <Loading isLoading={isLoading} />
 
-         <Title>{id ? 'Editar aluno' : 'Novo Aluno'}</Title>
+         <Title>{id ? 'Editar departamento' : 'Novo departamento'}</Title>
 
          {/* expressão, se tem id AND foto */}
-         {id && (
+         {/* {id && (
             <ProfilePicture>
                {foto ? (
                   <img src={foto} alt={nome} />
@@ -160,21 +150,21 @@ export default function Aluno({ match, history }) {
                   <FaEdit size={24} />
                </Link>
             </ProfilePicture>
-         )}
+         )} */}
 
          {/* Campos de input */}
          <Form onSubmit={handleSubmit}>
             <input
                type="text"
-               value={nome}
-               onChange={(e) => setNome(e.target.value)}
-               placeholder="Nome"
+               value={titulo}
+               onChange={(e) => setTitulo(e.target.value)}
+               placeholder="Título"
             />
             <input
                type="text"
-               value={sobrenome}
-               onChange={(e) => setSobrenome(e.target.value)}
-               placeholder="Sobrenome"
+               value={textoPrinc}
+               onChange={(e) => setTextoPrinc(e.target.value)}
+               placeholder="Texto principal"
             />
             <input
                type="email"
@@ -183,22 +173,22 @@ export default function Aluno({ match, history }) {
                placeholder="Email"
             />
             <input
-               type="number"
-               value={idade}
-               onChange={(e) => setIdade(e.target.value)}
-               placeholder="Idade"
+               type="text"
+               value={ramal}
+               onChange={(e) => setRamal(e.target.value)}
+               placeholder="Ramal"
             />
             <input
                type="text"
-               value={peso}
-               onChange={(e) => setPeso(e.target.value)}
-               placeholder="Peso"
+               value={funcionarios}
+               onChange={(e) => setFuncionarios(e.target.value)}
+               placeholder="Funcionários"
             />
             <input
                type="text"
-               value={altura}
-               onChange={(e) => setAltura(e.target.value)}
-               placeholder="Altura"
+               value={andar}
+               onChange={(e) => setAndar(e.target.value)}
+               placeholder="Andar"
             />
 
             <button type="submit">Enviar</button>
@@ -208,7 +198,7 @@ export default function Aluno({ match, history }) {
 }
 
 // especificando match e history como um objeto
-Aluno.propTypes = {
+Departamento.propTypes = {
    match: PropTypes.shape({}).isRequired,
    history: PropTypes.shape([]).isRequired,
 };

@@ -3,7 +3,7 @@ import { Switch } from 'react-router-dom';
 
 import MyRoute from './myRoute';
 
-import Aluno from '../pages/aluno';
+import Aluno from '../pages/departamento';
 import Alunos from '../pages/alunos';
 import Fotos from '../pages/fotos';
 import Register from '../pages/register';

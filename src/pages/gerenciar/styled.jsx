@@ -15,38 +15,10 @@ export const GerenciarContainer = styled.div`
    }
    div {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
    }
    button {
       margin: 10px 10px;
-   }
-   position: relative;
-   width: 100%; // para se ajustar ao container pai
-
-   ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      border: 1px solid #ccc;
-      position: absolute;
-      width: 100%;
-      background-color: white;
-      z-index: 10;
-      margin-top: 5px; // pequeno espaço
-   }
-
-   li {
-      padding: 10px;
-      cursor: pointer;
-   }
-
-   li:hover {
-      background-color: #f0f0f0;
-   }
-
-   li.highlighted {
-      background-color: #e0e0e0;
-      font-weight: bold;
    }
 `;
