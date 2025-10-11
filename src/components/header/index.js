@@ -19,7 +19,7 @@ export default function Header() {
 
    return (
       <Nav>
-         <Link to="/home">
+         <Link to="/">
             <FaHome size={24} />
          </Link>
 

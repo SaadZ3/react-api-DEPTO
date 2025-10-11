@@ -4,7 +4,7 @@ import { Switch } from 'react-router-dom';
 import MyRoute from './myRoute';
 
 import Aluno from '../pages/departamento';
-import Alunos from '../pages/departamentos';
+import Departamentos from '../pages/deptosAndar';
 import Fotos from '../pages/fotos';
 import Register from '../pages/register';
 import Login from '../pages/login';
@@ -17,8 +17,9 @@ import Gerenciar from '../pages/gerenciar';
 export default function Routes() {
    return (
       <Switch>
-         <MyRoute exact path="/" component={Alunos} isClosed={false} />
-         <MyRoute exact path="/home" component={Consultar} isClosed={false} />
+         {/* eslint-disable-next-line prettier/prettier */}
+         <MyRoute exact path="/departamentos/:andar" component={Departamentos} isClosed={false} />
+         <MyRoute exact path="/" component={Consultar} isClosed={false} />
 
          {/* as proximas 3 rotas são de ediçãa de aluno */}
          <MyRoute exact path="/aluno/:id/edit" component={Aluno} isClosed />
