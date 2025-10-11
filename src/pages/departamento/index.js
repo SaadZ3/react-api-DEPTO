@@ -4,8 +4,6 @@ import { isEmail } from 'validator';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
-// import { FaUserCircle, FaEdit } from 'react-icons/fa';
-// import { Link } from 'react-router-dom';
 
 import axios from '../../services/axios';
 import { Container } from '../../styles/globalStyles';
@@ -22,9 +20,25 @@ export default function Departamento({ match, history }) {
    const [ramal, setRamal] = useState('');
    const [email, setEmail] = useState('');
    const [funcionarios, setFuncionarios] = useState('');
-   const [andar, setAndar] = useState('');
+
+   const [andar, setAndar] = useState('Térreo'); // Valor padrão para o select
+   const [complemento, setComplemento] = useState('');
    const [isLoading, setIsLoading] = useState(false);
 
+   const andaresOptions = [
+      '1º Sub-solo',
+      'Térreo',
+      '1º Andar',
+      '2º Andar',
+      '3º Andar',
+      '4º Andar',
+      '5º Andar',
+      '6º Andar',
+      '7º Andar',
+      '8º Andar',
+      '9º Andar',
+      '10º Andar',
+   ];
    // useEffect é para preencher os dados antoriores na tela, antes do usuario edita-los
    useEffect(() => {
       if (!id) return;
@@ -42,6 +56,7 @@ export default function Departamento({ match, history }) {
             setRamal(data.ramal);
             setFuncionarios(data.funcionarios);
             setAndar(data.andar);
+            setComplemento(data.complemento || ''); // Garante que não seja null
             setIsLoading(false);
          } catch (err) {
             setIsLoading(false);
@@ -59,8 +74,8 @@ export default function Departamento({ match, history }) {
       e.preventDefault();
       let formErrors = false;
 
-      if (titulo.length < 2 || titulo.length > 50) {
-         toast.error('Titulo precisa ter entre 3 e 50 caracteres');
+      if (titulo.length < 1 || titulo.length > 50) {
+         toast.error('Titulo precisa ter entre 2 e 50 caracteres');
          formErrors = true;
       }
       if (textoPrinc.length < 3 || textoPrinc.length > 255) {
@@ -90,28 +105,23 @@ export default function Departamento({ match, history }) {
       try {
          setIsLoading(true);
 
+         const deptoData = {
+            titulo,
+            texto_principal: textoPrinc,
+            email,
+            ramal,
+            funcionarios,
+            andar,
+            complemento, // ENVIANDO O NOVO CAMPO
+         };
          // se tiver id, edita os dados, se não, cria os dados
          if (id) {
-            await axios.put(`/departamentos/${id}`, {
-               titulo,
-               texto_principal: textoPrinc,
-               email,
-               ramal,
-               funcionarios,
-               andar,
-            });
+            await axios.put(`/departamentos/${id}`, deptoData);
             toast.success('Departamento editado com sucesso!');
          } else {
-            const { data } = await axios.post(`/departamentos/`, {
-               titulo,
-               texto_principal: textoPrinc,
-               email,
-               ramal,
-               funcionarios,
-               andar,
-            });
+            const { data } = await axios.post(`/departamentos/`, deptoData);
             toast.success('Departamento criado com sucesso!');
-            history.push(`/departamento/${data.id}/edit`);
+            history.push(`/aluno/${data.id}/edit`); // Redireciona para a página de edição
          }
 
          setIsLoading(false);
@@ -184,11 +194,23 @@ export default function Departamento({ match, history }) {
                onChange={(e) => setFuncionarios(e.target.value)}
                placeholder="Funcionários"
             />
+
+            <select value={andar} onChange={(e) => setAndar(e.target.value)}>
+               <option value="" disabled>
+                  Selecione o andar
+               </option>
+               {andaresOptions.map((option) => (
+                  <option key={option} value={option}>
+                     {option}
+                  </option>
+               ))}
+            </select>
+
             <input
                type="text"
-               value={andar}
-               onChange={(e) => setAndar(e.target.value)}
-               placeholder="Andar"
+               value={complemento}
+               onChange={(e) => setComplemento(e.target.value)}
+               placeholder="Complemento (ex: Direita, Esquerda, Fundos)"
             />
 
             <button type="submit">Enviar</button>

@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-// import { Link } from 'react-router-dom'; // isso é necessário para usar o Link do react-router-dom
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { get } from 'lodash';
