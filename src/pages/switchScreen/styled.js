@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import * as colors from '../../config/colors';
 
 export const Switch = styled.div`
-   margin: 30px auto 0; // Changed margin-bottom to 0
+   margin: 30px 0 0 0; // só margem superior
    background: ${colors.surface1};
    border-radius: ${colors.radiusXl} ${colors.radiusXl} 0 0;
    margin: 0;

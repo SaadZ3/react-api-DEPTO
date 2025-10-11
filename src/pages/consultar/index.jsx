@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { get } from 'lodash';
-import { Container } from '../../styles/globalStyles';
+// import { Container } from '../../styles/globalStyles';
 import ViewInfos from './InfoDeptos';
 // import SwitchScreen from '../../components/switchScreen/index';
 import { ConsultarContainer } from './styled';
@@ -115,48 +115,46 @@ export default function Home() {
    };
 
    return (
-      <Container>
+      <ConsultarContainer>
          <Loading isLoading={isLoading} />
-         <ConsultarContainer>
-            <h1>Consultar</h1>
-            <input
-               type="text"
-               autoComplete="off"
-               // eslint-disable-next-line jsx-a11y/no-autofocus
-               autoFocus="true"
-               placeholder="Digite o nome do departamento"
-               value={valorInput}
-               onChange={(e) => {
-                  setValorInput(e.target.value);
-                  setIsSelected(false); // Reseta a flag quando o usuário começa a digitar
-               }}
-               onKeyDown={handleKeyDown} // Adicionado o evento de teclado aqui
-            />
-            <button type="button">Consultar</button>
+         <h1>Consultar</h1>
+         <input
+            type="text"
+            autoComplete="off"
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus="true"
+            placeholder="Digite o nome do departamento"
+            value={valorInput}
+            onChange={(e) => {
+               setValorInput(e.target.value);
+               setIsSelected(false); // Reseta a flag quando o usuário começa a digitar
+            }}
+            onKeyDown={handleKeyDown} // Adicionado o evento de teclado aqui
+         />
+         <button type="button">Consultar</button>
 
-            {/* INÍCIO DA CORREÇÃO */}
-            {filteredDeptos.length > 0 && (
-               <ul>
-                  {filteredDeptos.map((dept, index) => (
-                     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
-                     <li
-                        key={dept.id}
-                        className={index === activeIndex ? 'highlighted' : ''}
-                        onClick={() => handleItemClick(dept)}
-                        // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-                        // onMouseOver={() => setActiveIndex(index)}
-                     >
-                        <HighlightedText
-                           text={dept.titulo}
-                           highlight={valorInput}
-                        />
-                     </li>
-                  ))}
-               </ul>
-            )}
-            {/* FIM DA CORREÇÃO */}
-            <ViewInfos selectedDept={selectedDept} />
-         </ConsultarContainer>
-      </Container>
+         {/* INÍCIO DA CORREÇÃO */}
+         {filteredDeptos.length > 0 && (
+            <ul>
+               {filteredDeptos.map((dept, index) => (
+                  // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+                  <li
+                     key={dept.id}
+                     className={index === activeIndex ? 'highlighted' : ''}
+                     onClick={() => handleItemClick(dept)}
+                     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
+                     // onMouseOver={() => setActiveIndex(index)}
+                  >
+                     <HighlightedText
+                        text={dept.titulo}
+                        highlight={valorInput}
+                     />
+                  </li>
+               ))}
+            </ul>
+         )}
+         {/* FIM DA CORREÇÃO */}
+         <ViewInfos selectedDept={selectedDept} />
+      </ConsultarContainer>
    );
 }
