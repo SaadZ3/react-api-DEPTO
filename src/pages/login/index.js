@@ -39,9 +39,9 @@ export default function Login(props) {
    return (
       <Container>
          <Loading isLoading={isLoading} />
-         <h1>Login</h1>
          {/* eslint-disable-next-line react/jsx-no-bind */}
          <Form onSubmit={handleSubmit}>
+            <h1>Login</h1>
             <label htmlFor="email">
                E-mail:
                <input

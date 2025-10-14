@@ -49,6 +49,80 @@ export default createGlobalStyle`
         background: ${colors.errorColor};
         color: #fff;
     }
+    input {
+      height: 40px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      padding: 0 10px;
+      border-radius: 5px;
+      margin-top: 5px;
+
+      &:focus {
+         border: 1px solid ${colors.primaryColor};
+         outline: none;
+      }
+    }
+    form {
+        max-width: 400px;
+        margin: 40px auto 0 auto;
+        padding: 32px 24px 24px 24px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    form h1 {
+        text-align: center;
+        margin-bottom: 24px;
+        font-size: 2rem;
+        color: ${colors.primaryColor};
+    }
+
+    form label {
+        font-weight: 500;
+        color: ${colors.primaryDarkColor};
+        margin-bottom: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    form input {
+        height: 40px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        padding: 0 10px;
+        border-radius: 5px;
+        margin-top: 5px;
+        background: #f8f8f8;
+        transition: border 0.2s;
+    }
+
+    form input:focus {
+        border: 1.5px solid ${colors.primaryColor};
+        background: #fff;
+    }
+
+    form button {
+        margin-top: 12px;
+        padding: 12px 0;
+        font-size: 1.1em;
+        font-weight: 600;
+        border-radius: 6px;
+        background: ${colors.primaryColor};
+        color: #fff;
+        border: none;
+        transition: background 0.2s, filter 0.2s;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    form button:hover {
+        filter: brightness(0.9);
+        background: ${colors.primaryDarkColor};
+    }
 
 `;
 
