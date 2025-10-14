@@ -3,7 +3,8 @@ import * as colors from '../../config/colors';
 
 export const GerenciarContainer = styled.div`
    margin: 0 0 32px 0; // só margem inferior
-   padding: 30px;
+   padding: 32px;
+   animation: slideIn 0.6s ease-out;
    background: #f8feffff;
    border: 1px solid ${colors.border};
    border-top: none;
@@ -17,9 +18,27 @@ export const GerenciarContainer = styled.div`
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 32px;
    }
    button {
-      margin: 10px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: ${colors.radius};
+      background: ${colors.primary};
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+      transition: ${colors.transition};
+      font-size: 14px;
+      box-shadow: ${colors.shadowSm};
+   }
+   button:hover {
+      background: ${colors.primaryHover};
+      transform: translateY(-2px);
+      box-shadow: ${colors.shadow};
    }
    .andares {
       display: grid;
@@ -27,7 +46,7 @@ export const GerenciarContainer = styled.div`
       gap: 16px;
       margin-bottom: 32px;
    }
-   .andares > div {
+   .andares div {
       background: ${colors.surface2};
       border: 1px solid ${colors.border};
       border-radius: ${colors.radius};
@@ -68,5 +87,14 @@ export const GerenciarContainer = styled.div`
    }
    .andares div:active {
       transform: translateY(-4px) scale(1);
+   }
+   .NomeAndar {
+      font-size: 16px;
+      margin: 0;
+      font-weight: 700;
+      color: ${colors.textPrimary};
+      text-align: center;
+      position: relative;
+      z-index: 1;
    }
 `;

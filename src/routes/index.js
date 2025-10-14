@@ -3,7 +3,7 @@ import { Switch } from 'react-router-dom';
 
 import MyRoute from './myRoute';
 
-import Aluno from '../pages/departamento';
+import Departamento from '../pages/departamento';
 import Departamentos from '../pages/deptosAndar';
 import Fotos from '../pages/fotos';
 import Register from '../pages/register';
@@ -21,9 +21,10 @@ export default function Routes() {
          <MyRoute exact path="/departamentos/:andar" component={Departamentos} isClosed={false} />
          <MyRoute exact path="/" component={Consultar} isClosed={false} />
 
-         {/* as proximas 3 rotas são de ediçãa de aluno */}
-         <MyRoute exact path="/aluno/:id/edit" component={Aluno} isClosed />
-         <MyRoute exact path="/aluno/" component={Aluno} isClosed />
+         {/* eslint-disable-next-line prettier/prettier */}
+         <MyRoute exact path="/departamento/" component={Departamento} isClosed />
+         {/* eslint-disable-next-line prettier/prettier */}
+         <MyRoute exact path="/departamento/:id/edit" component={Departamento} isClosed />
          <MyRoute exact path="/fotos/:id" component={Fotos} isClosed />
 
          {/* eslint-disable-next-line prettier/prettier */}

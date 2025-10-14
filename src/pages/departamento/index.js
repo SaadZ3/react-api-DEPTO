@@ -121,7 +121,7 @@ export default function Departamento({ match, history }) {
          } else {
             const { data } = await axios.post(`/departamentos/`, deptoData);
             toast.success('Departamento criado com sucesso!');
-            history.push(`/aluno/${data.id}/edit`); // Redireciona para a página de edição
+            history.push(`/departamentos/${data.andar}`); // Redireciona para a página de edição
          }
 
          setIsLoading(false);
@@ -147,20 +147,6 @@ export default function Departamento({ match, history }) {
          <Loading isLoading={isLoading} />
 
          <Title>{id ? 'Editar departamento' : 'Novo departamento'}</Title>
-
-         {/* expressão, se tem id AND foto */}
-         {/* {id && (
-            <ProfilePicture>
-               {foto ? (
-                  <img src={foto} alt={nome} />
-               ) : (
-                  <FaUserCircle size={180} />
-               )}
-               <Link to={`/fotos/${id}`}>
-                  <FaEdit size={24} />
-               </Link>
-            </ProfilePicture>
-         )} */}
 
          {/* Campos de input */}
          <Form onSubmit={handleSubmit}>

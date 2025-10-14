@@ -24,16 +24,16 @@ export default function Gerenciar() {
       <Container>
          <SwitchScreen />
          <GerenciarContainer>
-            <div>
-               <h1>GERENCIAR</h1>
-               <Link to="/aluno/">
+            <div className="headerGeren">
+               <h1>Gerenciar Departamentos</h1>
+               <Link to="/departamento/">
                   <button type="button">Novo Departamento</button>
                </Link>
             </div>
             <div className="andares">
                {andares.map((andar) => (
                   <Link key={andar} to={`/departamentos/${andar}`}>
-                     <div>{andar}</div>
+                     <div className="NomeAndar">{andar}</div>
                   </Link>
                ))}
             </div>

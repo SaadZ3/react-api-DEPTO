@@ -3,7 +3,8 @@ import * as colors from '../../config/colors';
 
 export const ConsultarContainer = styled.div`
    margin: 0 0 32px 0; // só margem inferior
-   padding: 30px;
+   padding: 32px;
+   animation: slideIn 0.6s ease-out;
    background: #f8feffff;
    border: 1px solid ${colors.border};
    border-top: none;
@@ -14,26 +15,68 @@ export const ConsultarContainer = styled.div`
       margin: 20px 0px;
    }
    div {
+      position: relative;
       display: flex;
-      justify-content: center;
       align-items: center;
+      margin-bottom: 32px;
+   }
+   .iptConsulta {
+      width: 100%;
+      height: 56px;
+      padding: 0 120px 0 20px;
+      font-size: 16px;
+      color: ${colors.textPrimary};
+      background: ${colors.surface2};
+      border: 1px solid ${colors.border};
+      border-radius: ${colors.radius};
+      transition: ${colors.transition};
+      font-family: inherit;
+   }
+   .iptConsulta:focus {
+      border-color: ${colors.primary};
+      box-shadow: 0 0 0 4px ${colors.primaryLight};
+      background: ${colors.surface3};
+   }
+   .iptConsulta::placeholder {
+      color: ${colors.textMuted};
    }
    button {
-      margin: 10px 10px;
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 40px;
+      padding: 0 24px;
+      border: none;
+      border-radius: ${colors.radiusSm};
+      background: ${colors.primary};
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+      transition: ${colors.transition};
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
    }
-   position: relative;
-   width: 100%; // para se ajustar ao container pai
 
    ul {
       list-style: none;
-      padding: 0;
-      margin: 0;
-      border: 1px solid #ccc;
+      margin: 8px 0 0 0;
+      padding: 8px;
       position: absolute;
       width: 100%;
-      background-color: white;
-      z-index: 10;
-      margin-top: 5px; // pequeno espaço
+      top: 100%;
+      left: 0;
+      background: var(--surface-2);
+      z-index: 1000;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      max-height: 320px;
+      overflow-y: auto;
+      backdrop-filter: blur(10px);
+      animation: fadeInUp 0.2s ease-out;
    }
 
    li {

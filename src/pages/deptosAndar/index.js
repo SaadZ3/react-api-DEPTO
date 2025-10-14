@@ -80,7 +80,7 @@ export default function ListarDeptos() {
                   <span>{depto.titulo}</span>
                   <span>{depto.email}</span>
 
-                  <Link to={`/depto/${depto.id}/edit`}>
+                  <Link to={`/departamento/${depto.id}/edit`}>
                      <FaEdit size={16} />
                   </Link>
 
