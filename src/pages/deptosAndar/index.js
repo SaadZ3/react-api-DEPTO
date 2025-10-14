@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-// import { get } from 'lodash';
-// import { FaEdit, FaWindowClose, FaExclamation } from 'react-icons/fa';
-import { FaEdit } from 'react-icons/fa';
+import { get } from 'lodash';
+import { FaEdit, FaExclamation, FaWindowClose } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import { Container } from '../../styles/globalStyles';
@@ -33,42 +32,42 @@ export default function ListarDeptos() {
    }, [andar]); // <-- roda sempre que o andar mudar
 
    // clicar no X
-   // const handleDeleteAsk = (e) => {
-   //    e.preventDefault();
-   //    const exclamation = e.currentTarget.nextSibling; // pega o proximo irmao do FaWinClose, no caso o <FaExclamation>
-   //    exclamation.setAttribute('display', 'block');
-   //    e.currentTarget.remove();
-   // };
+   const handleDeleteAsk = (e) => {
+      e.preventDefault();
+      const exclamation = e.currentTarget.nextSibling; // pega o proximo irmao do FaWinClose, no caso o <FaExclamation>
+      exclamation.setAttribute('display', 'block');
+      e.currentTarget.remove();
+   };
    // clciar no !
-   // const handleDelete = async (e, id, index) => {
-   //    e.persist();
+   const handleDelete = async (e, id, index) => {
+      e.persist();
 
-   //    try {
-   //       setIsLoading(true);
-   //       await axios.delete(`/alunos/${id}`);
-   //       const novosAlunos = [...alunos]; // copia os alunos
-   //       novosAlunos.splice(index, 1); // separa dos que se quer excluir
-   //       setAlunos(novosAlunos);
-   //       setIsLoading(false);
-   //    } catch (err) {
-   //       const status = get(err, 'response.status', 0);
+      try {
+         setIsLoading(true);
+         await axios.delete(`/departamentos/${id}`);
+         const novosDeptos = [...departamentos]; // copia os departamentos
+         novosDeptos.splice(index, 1); // separa dos que se quer excluir
+         setDepartamentos(novosDeptos);
+         setIsLoading(false);
+      } catch (err) {
+         const status = get(err, 'response.status', 0);
 
-   //       if (status === 401) {
-   //          toast.error('Você precisa fazer login');
-   //       } else {
-   //          toast.error('Ocorreu um erro ao excluir aluno');
-   //       }
+         if (status === 401) {
+            toast.error('Você precisa fazer login');
+         } else {
+            toast.error('Ocorreu um erro ao excluir departamento');
+         }
 
-   //       setIsLoading(false);
-   //    }
-   // };
+         setIsLoading(false);
+      }
+   };
 
    return (
       <Container>
          <Loading isLoading={isLoading} />
          <div>
             <h1>GERENCIAR</h1>
-            <Link to="/aluno/">
+            <Link to="/departamento/">
                <button type="button">Novo Departamento</button>
             </Link>
          </div>
@@ -84,19 +83,19 @@ export default function ListarDeptos() {
                      <FaEdit size={16} />
                   </Link>
 
-                  {/* <Link
+                  <Link
                      onClick={handleDeleteAsk}
-                     to={`/aluno/${aluno.id}/delete`}
+                     to={`/departamento/${depto.id}/delete`}
                   >
                      <FaWindowClose size={16} />
-                  </Link> */}
+                  </Link>
 
-                  {/* <FaExclamation
+                  <FaExclamation
                      size={16}
                      display="none"
                      cursor="pointer"
-                     onClick={(e) => handleDelete(e, aluno.id, index)}
-                  /> */}
+                     onClick={(e) => handleDelete(e, depto.id)}
+                  />
                </div>
             ))}
          </DeptosContainer2>
