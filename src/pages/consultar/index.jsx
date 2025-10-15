@@ -119,7 +119,7 @@ export default function Home() {
          <Loading isLoading={isLoading} />
          <ConsultarContainer>
             <h1>Consultar</h1>
-            <div>
+            <div className="ConsultarDiv">
                <input
                   className="iptConsulta"
                   type="text"
@@ -136,7 +136,6 @@ export default function Home() {
                />
                <button type="button">Consultar</button>
 
-               {/* INÍCIO DA CORREÇÃO */}
                {filteredDeptos.length > 0 && (
                   <ul>
                      {filteredDeptos.map((dept, index) => (
@@ -158,8 +157,8 @@ export default function Home() {
                      ))}
                   </ul>
                )}
-               <ViewInfos selectedDept={selectedDept} />
             </div>
+            <ViewInfos selectedDept={selectedDept} />
          </ConsultarContainer>
       </Container>
    );

@@ -65,15 +65,15 @@ export default function ListarDeptos() {
    return (
       <Container>
          <Loading isLoading={isLoading} />
-         <div>
-            <h1>GERENCIAR</h1>
-            <Link to="/departamento/">
-               <button type="button">Novo Departamento</button>
-            </Link>
-         </div>
-         <h1>Departamentos do Andar: {andar}</h1>
-
          <DeptosContainer2>
+            <div>
+               <h1>GERENCIAR</h1>
+               <Link to="/departamento/">
+                  <button type="button">Novo Departamento</button>
+               </Link>
+            </div>
+            <h2>Departamentos do {andar}</h2>
+
             {departamentos.map((depto) => (
                <div key={String(depto.id)}>
                   <span>{depto.titulo}</span>

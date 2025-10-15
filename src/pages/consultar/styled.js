@@ -14,7 +14,7 @@ export const ConsultarContainer = styled.div`
    li {
       margin: 20px 0px;
    }
-   div {
+   .ConsultarDiv {
       position: relative;
       display: flex;
       align-items: center;
@@ -40,7 +40,7 @@ export const ConsultarContainer = styled.div`
    .iptConsulta::placeholder {
       color: ${colors.textMuted};
    }
-   button {
+   .ConsultarDiv button {
       position: absolute;
       right: 8px;
       top: 50%;
@@ -68,11 +68,11 @@ export const ConsultarContainer = styled.div`
       width: 100%;
       top: 100%;
       left: 0;
-      background: var(--surface-2);
+      background: ${colors.surface2};
       z-index: 1000;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-lg);
+      border-radius: ${colors.radius};
+      border: 1px solid ${colors.border};
+      box-shadow: ${colors.shadowLg};
       max-height: 320px;
       overflow-y: auto;
       backdrop-filter: blur(10px);
@@ -84,17 +84,19 @@ export const ConsultarContainer = styled.div`
       cursor: pointer;
    }
 
+   li.highlighted,
    li:hover {
-      background-color: #f0f0f0;
-   }
-
-   li.highlighted {
-      background-color: #e0e0e0;
-      font-weight: bold;
+      background-color: #c0c0c0ff;
+      /* font-weight: bold; */
    }
 `;
 
 export const InfosContainer = styled.div`
+   align-items: center;
+   justify-content: center;
+   margin-top: 32px;
+   margin: 0px;
+   padding: 0px;
    .infos {
       display: grid;
       grid-template-columns: 1fr 1fr;
