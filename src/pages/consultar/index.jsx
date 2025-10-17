@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { get } from 'lodash';
 import { Container } from '../../styles/globalStyles';
 import ViewInfos from './InfoDeptos';
-import SwitchScreen from '../switchScreen/index';
+import SwitchScreen from '../../components/switchScreen/index';
 import { ConsultarContainer } from './styled';
 import axios from '../../services/axios'; // Importe o axios aqui
 import Loading from '../../components/loading/index'; // Importe o Loading aqui

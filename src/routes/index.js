@@ -5,7 +5,6 @@ import MyRoute from './myRoute';
 
 import Departamento from '../pages/departamento';
 import Departamentos from '../pages/deptosAndar';
-import Fotos from '../pages/fotos';
 import Register from '../pages/register';
 import Login from '../pages/login';
 import Page404 from '../pages/page404';
@@ -25,7 +24,6 @@ export default function Routes() {
          <MyRoute exact path="/departamento/" component={Departamento} isClosed />
          {/* eslint-disable-next-line prettier/prettier */}
          <MyRoute exact path="/departamento/:id/edit" component={Departamento} isClosed />
-         <MyRoute exact path="/fotos/:id" component={Fotos} isClosed />
 
          {/* eslint-disable-next-line prettier/prettier */}
          <MyRoute exact path="/register/" component={Register} isClosed={false} />

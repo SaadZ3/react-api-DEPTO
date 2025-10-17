@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from '../../styles/globalStyles';
-import SwitchScreen from '../switchScreen/index';
+import SwitchScreen from '../../components/switchScreen/index';
 import { GerenciarContainer } from './styled';
 
 export default function Gerenciar() {
