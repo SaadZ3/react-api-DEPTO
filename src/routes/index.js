@@ -8,7 +8,7 @@ import Departamentos from '../pages/deptosAndar';
 import Register from '../pages/register';
 import Login from '../pages/login';
 import Page404 from '../pages/page404';
-// import Home from '../pages/consultar';
+import LandingPage from '../pages/landingPage';
 
 import Consultar from '../pages/consultar';
 import Gerenciar from '../pages/gerenciar';
@@ -18,7 +18,7 @@ export default function Routes() {
       <Switch>
          {/* eslint-disable-next-line prettier/prettier */}
          <MyRoute exact path="/departamentos/:andar" component={Departamentos} isClosed={false} />
-         <MyRoute exact path="/" component={Consultar} isClosed={false} />
+         <MyRoute exact path="/" component={LandingPage} isClosed={false} />
 
          {/* eslint-disable-next-line prettier/prettier */}
          <MyRoute exact path="/departamento/" component={Departamento} isClosed />

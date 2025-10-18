@@ -1,5 +1,11 @@
 import React from 'react';
-import { FaHome, FaCircle, FaPowerOff } from 'react-icons/fa';
+import {
+   FaCircle,
+   FaPowerOff,
+   FaBuilding,
+   FaSearch,
+   FaSignInAlt,
+} from 'react-icons/fa';
 import { Link, useHistory } from 'react-router-dom'; // isso é necessário para usar o Link do react-router-dom
 import { useSelector, useDispatch } from 'react-redux';
 import { Nav } from './styled';
@@ -20,23 +26,29 @@ export default function Header() {
    return (
       <Nav>
          <Link to="/">
-            <FaHome size={24} />
+            <div className="logo">
+               <FaBuilding size={28} />
+               <h1>GuiaDepto</h1>
+            </div>
          </Link>
 
          <div>
+            <Link to="/consultar" className="nav-link">
+               <FaSearch /> Consultar
+            </Link>
             {isLoggedIn ? (
-               <Link onClick={handleLogout} to="/logout">
-                  <FaPowerOff size={24} />
+               <Link
+                  onClick={handleLogout}
+                  to="/logout"
+                  className="nav-link-login"
+               >
+                  <FaPowerOff /> Sair
                </Link>
             ) : (
-               <Link to="/login">
-                  <p>Login</p>
+               <Link to="/login" className="nav-link-login">
+                  <FaSignInAlt /> Login
                </Link>
             )}
-            <Link to="/register">
-               <p>Register</p>
-            </Link>
-
             {isLoggedIn && <FaCircle size={24} color="#66ff33" />}
          </div>
       </Nav>
