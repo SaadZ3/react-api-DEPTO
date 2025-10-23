@@ -65,10 +65,11 @@ export default createGlobalStyle`
     form {
         max-width: 400px;
         margin: 40px auto 0 auto;
+        margin-bottom: 0px;
         padding: 32px 24px 24px 24px;
-        background: #fff;
+        /* background: #fff; */
         border-radius: 12px;
-        box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+        /* box-shadow: 0 2px 16px rgba(0,0,0,0.07); */
         display: flex;
         flex-direction: column;
         gap: 16px;
@@ -128,6 +129,7 @@ export default createGlobalStyle`
 
 export const Container = styled.section`
    max-width: 780px;
+   height: auto;
    background: #f8feffff;
    margin: 30px auto;
    border-radius: ${colors.radiusXl};

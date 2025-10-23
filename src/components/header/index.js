@@ -49,6 +49,11 @@ export default function Header() {
                   <FaSignInAlt /> Login
                </Link>
             )}
+            {!isLoggedIn && (
+               <Link to="/register" className="nav-link-register">
+                  <FaSignInAlt /> Register
+               </Link>
+            )}
             {isLoggedIn && <FaCircle size={24} color="#66ff33" />}
          </div>
       </Nav>

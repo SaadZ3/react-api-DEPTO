@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { FaLock } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 import { Switch, Btn } from './styled';
 
 export default function SwitchScreen() {
    const location = useLocation();
+   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
    return (
       <Switch>
@@ -17,12 +20,25 @@ export default function SwitchScreen() {
                </Link>
             </Btn>
             <Btn>
-               <Link
-                  to="/gerenciar"
-                  className={location.pathname === '/gerenciar' ? 'active' : ''}
-               >
-                  Gerenciar
-               </Link>
+               {!isLoggedIn ? (
+                  <Link
+                     to="/gerenciar"
+                     className={
+                        location.pathname === '/gerenciar' ? 'active' : ''
+                     }
+                  >
+                     <FaLock /> Gerenciar
+                  </Link>
+               ) : (
+                  <Link
+                     to="/gerenciar"
+                     className={
+                        location.pathname === '/gerenciar' ? 'active' : ''
+                     }
+                  >
+                     Gerenciar
+                  </Link>
+               )}
             </Btn>
          </div>
       </Switch>
