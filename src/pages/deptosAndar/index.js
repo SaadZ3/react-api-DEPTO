@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { get } from 'lodash';
-import { FaEdit, FaExclamation, FaWindowClose } from 'react-icons/fa';
+import {
+   FaEdit,
+   FaExclamation,
+   FaWindowClose,
+   FaBuilding,
+   FaEnvelope,
+   FaPlus,
+   FaBoxOpen,
+} from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import { Container } from '../../styles/globalStyles';
 import { DeptosContainer2 } from './styled';
 import axios from '../../services/axios';
-
 import Loading from '../../components/loading';
 
 export default function ListarDeptos() {
@@ -48,6 +55,7 @@ export default function ListarDeptos() {
          const novosDeptos = [...departamentos]; // copia os departamentos
          novosDeptos.splice(index, 1); // separa dos que se quer excluir
          setDepartamentos(novosDeptos);
+         toast.success('Departamento excluído com sucesso!');
          setIsLoading(false);
       } catch (err) {
          const status = get(err, 'response.status', 0);
@@ -66,38 +74,83 @@ export default function ListarDeptos() {
       <Container>
          <Loading isLoading={isLoading} />
          <DeptosContainer2>
-            <div>
-               <h1>GERENCIAR</h1>
+            <div className="header-wrapper">
+               <h1>Gerenciar Departamentos</h1>
                <Link to="/departamento/">
-                  <button type="button">Novo Departamento</button>
+                  <button type="button">
+                     <FaPlus /> Novo Departamento
+                  </button>
                </Link>
             </div>
-            <h2>Departamentos do {andar}</h2>
+            <div className="floor-title-section">
+               <h2>
+                  <FaBuilding className="floor-icon" />
+                  Departamentos do {andar}
+               </h2>
+               <p className="floor-subtitle">
+                  {departamentos.length} departamento
+                  {departamentos.length !== 1 ? 's' : ''} cadastrado
+                  {departamentos.length !== 1 ? 's' : ''}
+               </p>
+            </div>
 
-            {departamentos.map((depto) => (
-               <div key={String(depto.id)}>
-                  <span>{depto.titulo}</span>
-                  <span>{depto.email}</span>
+            {/* Lista de departamentos */}
+            {departamentos.length > 0 ? (
+               <div className="departments-list">
+                  {departamentos.map((depto, index) => (
+                     <div key={String(depto.id)} className="department-card">
+                        <div className="dept-info">
+                           <h3 className="dept-title">
+                              <FaBuilding className="dept-icon" />
+                              {depto.titulo}
+                           </h3>
+                           <p className="dept-email">
+                              <FaEnvelope className="email-icon" />
+                              {depto.email}
+                           </p>
+                        </div>
 
-                  <Link to={`/departamento/${depto.id}/edit`}>
-                     <FaEdit size={16} />
-                  </Link>
+                        <div className="dept-actions">
+                           <Link to={`/departamento/${depto.id}/edit`}>
+                              <div className="action-btn edit-btn">
+                                 <FaEdit />
+                              </div>
+                           </Link>
 
-                  <Link
-                     onClick={handleDeleteAsk}
-                     to={`/departamento/${depto.id}/delete`}
-                  >
-                     <FaWindowClose size={16} />
-                  </Link>
+                           <Link
+                              onClick={handleDeleteAsk}
+                              to={`/departamento/${depto.id}/delete`}
+                           >
+                              <div className="action-btn delete-btn">
+                                 <FaWindowClose />
+                              </div>
+                           </Link>
 
-                  <FaExclamation
-                     size={16}
-                     display="none"
-                     cursor="pointer"
-                     onClick={(e) => handleDelete(e, depto.id)}
-                  />
+                           <FaExclamation
+                              className="action-btn confirm-delete-btn"
+                              display="none"
+                              cursor="pointer"
+                              onClick={(e) => handleDelete(e, depto.id, index)}
+                           />
+                        </div>
+                     </div>
+                  ))}
                </div>
-            ))}
+            ) : (
+               !isLoading && (
+                  <div className="empty-state">
+                     <div className="empty-icon">
+                        <FaBoxOpen size={48} />
+                     </div>
+                     <h3>Nenhum departamento cadastrado</h3>
+                     <p>
+                        Este andar ainda não possui departamentos cadastrados.
+                        Clique no botão Novo Departamento para adicionar o
+                        primeiro.
+                     </p>
+                  </div>
+               )
+            )}
          </DeptosContainer2>
       </Container>
    );

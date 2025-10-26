@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import * as colors from '../../config/colors';
 
 export const ConsultarContainer = styled.div`
-   margin: 0 0 32px 0; // só margem inferior
+   /* margin: 0 0 32px 0; // só margem inferior */
    padding: 32px;
    animation: slideIn 0.6s ease-out;
-   background: #f8feffff;
+   background: ${colors.surface1};
    border: 1px solid ${colors.border};
    border-top: none;
    border-radius: 0 0 ${colors.radiusXl} ${colors.radiusXl};
@@ -58,6 +58,30 @@ export const ConsultarContainer = styled.div`
       align-items: center;
       gap: 8px;
       font-size: 14px;
+   }
+   .clearInput {
+      position: absolute;
+      right: 125px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: ${colors.textMuted};
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: ${colors.transitionFast};
+   }
+   .clearInput:hover {
+      background: rgba(255, 255, 255, 0.3);
+      color: ${colors.textSecondary};
+      transform: translateY(-50%) scale(1.1) rotate(90deg);
+      /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); */
    }
 
    ul {

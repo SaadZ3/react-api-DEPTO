@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import * as colors from '../../config/colors';
 
 export const GerenciarContainer = styled.div`
-   margin: 0 0 32px 0; // só margem inferior
-   padding: 32px;
+   /* margin: 0 0 32px 0; // só margem inferior */
+   padding: 40px;
    animation: slideIn 0.6s ease-out;
-   background: #f8feffff;
+   background: ${colors.surface1};
    border: 1px solid ${colors.border};
    border-top: none;
    border-radius: 0 0 ${colors.radiusXl} ${colors.radiusXl};
@@ -20,25 +20,73 @@ export const GerenciarContainer = styled.div`
       align-items: center;
       margin-bottom: 32px;
    }
+
+   .headerGeren h1 {
+      font-size: 1.8rem;
+      color: ${colors.textPrimary};
+      margin: 0;
+      font-weight: 700;
+      background: linear-gradient(
+         135deg,
+         ${colors.primary},
+         ${colors.primaryHover}
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+   }
+
    button {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
+      gap: 10px;
+      padding: 14px 24px;
       border: none;
-      border-radius: ${colors.radius};
-      background: ${colors.primary};
+      border-radius: ${colors.radiusLg};
+      background: linear-gradient(
+         135deg,
+         ${colors.primary},
+         ${colors.primaryHover}
+      );
       color: white;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       transition: ${colors.transition};
-      font-size: 14px;
-      box-shadow: ${colors.shadowSm};
-   }
-   button:hover {
-      background: ${colors.primaryHover};
-      transform: translateY(-2px);
-      box-shadow: ${colors.shadow};
+      font-size: 15px;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+         content: '';
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         width: 0;
+         height: 0;
+         background: rgba(255, 255, 255, 0.3);
+         border-radius: 50%;
+         transform: translate(-50%, -50%);
+         transition:
+            width 0.6s,
+            height 0.6s;
+      }
+
+      &:hover {
+         transform: translateY(-3px);
+         box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+         &::before {
+            width: 300px;
+            height: 300px;
+         }
+      }
+      &:active {
+         transform: translateY(-1px);
+      }
+      svg {
+         position: relative;
+         z-index: 1;
+      }
    }
    .andares {
       display: grid;

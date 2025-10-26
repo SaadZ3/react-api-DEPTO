@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { get } from 'lodash';
+import { IoMdClose } from 'react-icons/io';
 import { Container } from '../../styles/globalStyles';
 import ViewInfos from './InfoDeptos';
 import SwitchScreen from '../../components/switchScreen/index';
@@ -112,6 +113,12 @@ export default function Home() {
          setActiveIndex(-1);
       }
    };
+   const hanldeClick = () => {
+      setValorInput('');
+      setFilteredDeptos([]);
+      setIsSelected(false);
+      setSelectedDept(null);
+   };
 
    return (
       <Container>
@@ -134,6 +141,10 @@ export default function Home() {
                   }}
                   onKeyDown={handleKeyDown} // Adicionado o evento de teclado aqui
                />
+               {valorInput && (
+                  <IoMdClose className="clearInput" onClick={hanldeClick} />
+               )}
+
                <button type="button">Consultar</button>
 
                {filteredDeptos.length > 0 && (

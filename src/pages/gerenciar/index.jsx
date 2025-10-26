@@ -6,7 +6,6 @@ import { GerenciarContainer } from './styled';
 
 export default function Gerenciar() {
    const andares = [
-      '2º Sub-solo',
       '1º Sub-solo',
       'Térreo',
       '1º Andar',
