@@ -277,7 +277,7 @@ export const Container = styled.section`
    border-radius: ${colors.radiusXl};
    box-shadow: ${colors.shadowXl};
    border: 1px solid ${colors.border};
-   overflow: hidden;
+   overflow: visible;
    animation: fadeInRight 0.6s ease-out;
 
    @media (max-width: 968px) {

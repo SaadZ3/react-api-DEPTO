@@ -81,7 +81,6 @@ export const ConsultarContainer = styled.div`
       background: rgba(255, 255, 255, 0.3);
       color: ${colors.textSecondary};
       transform: translateY(-50%) scale(1.1) rotate(90deg);
-      /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); */
    }
 
    ul {
@@ -97,21 +96,44 @@ export const ConsultarContainer = styled.div`
       border-radius: ${colors.radius};
       border: 1px solid ${colors.border};
       box-shadow: ${colors.shadowLg};
-      max-height: 320px;
-      overflow-y: auto;
+      max-height: 320px; /* Altura máxima da lista */
+      overflow-y: auto; /* Adiciona scroll vertical quando necessário */
       backdrop-filter: blur(10px);
       animation: fadeInUp 0.2s ease-out;
+
+      /* Estilização da scrollbar para a lista */
+      &::-webkit-scrollbar {
+         width: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+         background: ${colors.surface3};
+         border-radius: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+         background: ${colors.primary};
+         border-radius: 4px;
+
+         &:hover {
+            background: ${colors.primaryHover};
+         }
+      }
    }
 
    li {
-      padding: 10px;
+      padding: 12px 16px;
       cursor: pointer;
+      border-radius: ${colors.radiusSm};
+      transition: ${colors.transitionFast};
+      margin: 4px 0;
    }
 
    li.highlighted,
    li:hover {
-      background-color: #c0c0c0ff;
-      /* font-weight: bold; */
+      background-color: ${colors.primary};
+      color: white;
+      font-weight: 500;
    }
 `;
 
@@ -174,7 +196,6 @@ export const InfosContainer = styled.div`
 
    .info-box:hover {
       border-color: ${colors.primaryColor};
-      /* transform: translateY(-4px); */
       box-shadow: ${colors.shadowLg};
    }
 
@@ -192,7 +213,7 @@ export const InfosContainer = styled.div`
       gap: 10px;
       margin-bottom: 12px; /* Mais espaço entre título e conteúdo */
    }
-   /* ... */
+
    .info-box p,
    .info-box-gerenc p {
       margin: 0;
