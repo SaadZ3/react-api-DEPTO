@@ -42,7 +42,7 @@ export default function ListarDeptos() {
    const handleDeleteAsk = (e) => {
       e.preventDefault();
       const exclamation = e.currentTarget.nextSibling; // pega o proximo irmao do FaWinClose, no caso o <FaExclamation>
-      exclamation.setAttribute('display', 'block');
+      exclamation.classList.add('action-btn');
       e.currentTarget.remove();
    };
    // clciar no !
@@ -127,7 +127,7 @@ export default function ListarDeptos() {
                            </Link>
 
                            <FaExclamation
-                              className="action-btn confirm-delete-btn"
+                              className="confirm-delete-btn"
                               display="none"
                               cursor="pointer"
                               onClick={(e) => handleDelete(e, depto.id, index)}

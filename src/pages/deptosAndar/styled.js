@@ -264,6 +264,8 @@ export const DeptosContainer2 = styled.div`
       color: ${colors.danger};
       animation: pulse 1s ease-in-out infinite;
 
+      width: 36px;
+      height: 36px;
       &:hover {
          background: ${colors.danger};
          color: white;
